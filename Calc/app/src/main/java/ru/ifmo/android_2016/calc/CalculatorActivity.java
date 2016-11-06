@@ -36,6 +36,20 @@ public final class CalculatorActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        TextView textOutputScreen = (TextView) findViewById(R.id.textViewOutputScreen);
+        outState.putString("expression", textOutputScreen.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        TextView textOutputScreen = (TextView) findViewById(R.id.textViewOutputScreen);
+        textOutputScreen.setText(savedInstanceState.getString("expression"));
+    }
+
     public class ButtonClickHandler implements View.OnClickListener {
 
         @Override
